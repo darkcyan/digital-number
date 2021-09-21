@@ -1,7 +1,6 @@
 package digital.number.scanner.service;
 
 import digital.number.scanner.model.DigitalNumber;
-import digital.number.scanner.service.processor.DigitalNumberProcessor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -17,9 +16,9 @@ import java.util.function.Function;
 public class Scanner {
 
   private final FileParser fileParser;
-  private final DigitalNumberChunkerV2 chunker;
-  private final DigitalNumberProcessor numberProcessor;
-  private final NumberWriter numberWriter;
+  private final Chunker<DigitalNumber, Integer, String> chunker;
+  private final Function<DigitalNumber, String> processDigitalNumber;
+  private final NumberWriter<String, String> outputNumber;
 
   public List<String> scanAndReturn(String filename) {
     log.info("scanAndReturn: {}", filename);
@@ -36,7 +35,7 @@ public class Scanner {
   }
 
   private Consumer<DigitalNumber> consume(Consumer<String> consumer) {
-    Function<DigitalNumber, String> mapper = (number) -> numberProcessor.andThen(numberWriter).apply(number);
+    Function<DigitalNumber, String> mapper = (number) -> processDigitalNumber.andThen(outputNumber).apply(number);
 
     return (digitalNumber) -> consumer.accept(mapper.apply(digitalNumber));
   }

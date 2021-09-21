@@ -23,14 +23,14 @@ public class FileParser {
   public void parseFile(String fileName, BiConsumer<Integer, String> consumer) {
     log.debug("parseFile( {} )", fileName);
     try (FileChannel fileChannel = FileChannel.open(Paths.get(fileName), StandardOpenOption.READ)) {
-      parseFile(fileChannel, consumer);
+      parseFileChannel(fileChannel, consumer);
     } catch (IOException e) {
       log.error("Error parsing file: {}", fileName, e);
       throw new UncheckedIOException(e);
     }
   }
 
-  public void parseFile(FileChannel fileChannel, BiConsumer<Integer, String> consumer) {
+  private void parseFileChannel(FileChannel fileChannel, BiConsumer<Integer, String> consumer) {
     try (BufferedReader br = new BufferedReader(Channels.newReader(fileChannel, StandardCharsets.UTF_8))) {
       Spliterator<String> spliterator = br.lines().spliterator();
 

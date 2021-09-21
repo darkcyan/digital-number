@@ -21,7 +21,7 @@ public class ScannerTest extends AbstractSpringBootTest {
   @Test
   public void shouldIdentifyInvalidNumbers() {
     assertThat(scanner.scanAndReturn(getInputFile("invalid_numbers.txt")))
-        .containsExactly("123456789", "12?456?8?" + NumberWriter.INVALID_NUMBER_SUFFIX, "123456789");
+        .containsExactly("123456789", "12?456?8?" + DefaultNumberWriter.INVALID_NUMBER_SUFFIX, "123456789");
   }
 
   @Test

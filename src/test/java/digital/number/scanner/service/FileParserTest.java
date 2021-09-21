@@ -17,13 +17,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @Slf4j
 public class FileParserTest {
 
-  private DigitalNumberChunkerV2 chunker;
+  private DigitalNumberChunker chunker;
   private FileParser sut;
   private List<DigitalNumber> digitalNumbers;
 
   @Before
   public void init() {
-    chunker = new DigitalNumberChunkerV2(3);
+    chunker = new DigitalNumberChunker(3);
     sut = new FileParser();
     digitalNumbers = new ArrayList<>();
   }

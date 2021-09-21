@@ -20,7 +20,7 @@ public abstract class AbstractSpringBootTest {
         "  | _| _||_||_ |_   ||_||_|",
         "  ||_  _|  | _||_|  ||_| _|");
 
-    return new DigitalNumber(lines, 0);
+    return new DigitalNumber(lines, 1);
   }
 
   protected DigitalNumber getDigitalNumberWhenIllegalChar() {
@@ -29,7 +29,7 @@ public abstract class AbstractSpringBootTest {
         "  | _| _|| ||_ |_   ||_||_|",
         "  ||_  _|  | _|| |  ||_| _|");
 
-    return new DigitalNumber(lines, 0);
+    return new DigitalNumber(lines, 1);
   }
 
 

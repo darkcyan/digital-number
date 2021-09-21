@@ -17,9 +17,11 @@ public class DigitalSymbolMatcher {
   private final Map<Integer, String> digitalSymbolMap;
 
   public DigitalSymbolMatcher(DigitalSymbolMatchConfig config) {
+    log.debug("Adding {} symbols to matcher:", config.getSymbolMap().size());
     ImmutableMap.Builder<Integer, String> builder = ImmutableMap.builder();
 
     config.getSymbolMap().forEach((key, value) -> builder.put(key.hashCode(), value));
+
     digitalSymbolMap = builder.build();
   }
 
